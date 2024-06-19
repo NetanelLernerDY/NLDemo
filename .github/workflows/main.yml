@@ -1,0 +1,33 @@
+name: Netanel Workflow
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+
+    steps:
+    - uses: actions/checkout@v2  # Checks out your repository's code
+
+    - name: Set up Python 3.9  # Example: setting up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies  # Example: installing Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run tests  # Example: running tests
+      run: |
+        python -m unittest discover -s tests -p '*_test.py'
+
+    - name: Build and deploy  # Example: deploying or other actions
+      run: |
+        echo "Deploying to production..."
+
+    - name: Cleanup  # Example: cleaning up or final steps
+      run: |
+        echo "Cleanup after jobs..."
+
